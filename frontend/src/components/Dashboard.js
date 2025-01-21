@@ -34,6 +34,43 @@ export const Dashboard = () => {
     new WaveformGenerator(metrics.sampleRate), [metrics.sampleRate]
   );
 
+ // Handle inference results
+ const handleInferenceResult = useCallback((result) => {
+  setMetrics(prev => ({
+    ...prev,
+    faultType: result.faultType,
+    confidence: result.confidence,
+    reliability: result.reliability,
+    baselinePrecision: result.baselinePrecision,
+    detectionStats: result.detectionStats
+  }));
+
+  // Only show alert for actual faults with high confidence
+  if (result.faultType && 
+      result.faultType.toLowerCase() !== 'normal' && 
+      result.confidence > 0.8) {
+    setAlert({
+      type: 'fault',
+      title: 'Fault Detected',
+      message: `${result.faultType} detected with ${(result.confidence * 100).toFixed(1)}% confidence`,
+      details: `Reliability: ${(result.reliability * 100).toFixed(1)}%`
+    });
+  } else {
+    // Clear any existing alert when returning to normal
+    setAlert(null);
+  }
+
+  // Log event - only log non-normal faults
+  if (eventLogRef.current && 
+      result.faultType && 
+      result.faultType.toLowerCase() !== 'normal') {
+    eventLogRef.current.addEvent({
+      type: 'fault',
+      message: `${result.faultType} - Confidence: ${(result.confidence * 100).toFixed(1)}%, Reliability: ${(result.reliability * 100).toFixed(1)}%`
+    });
+  }
+}, []);
+
 // Initialize Web Worker
 useEffect(() => {
   workerRef.current = new Worker(
@@ -86,42 +123,6 @@ useEffect(() => {
   };
 }, [handleInferenceResult]);
 
-  // Handle inference results
-const handleInferenceResult = useCallback((result) => {
-  setMetrics(prev => ({
-    ...prev,
-    faultType: result.faultType,
-    confidence: result.confidence,
-    reliability: result.reliability,
-    baselinePrecision: result.baselinePrecision,
-    detectionStats: result.detectionStats
-  }));
-
-  // Only show alert for actual faults with high confidence
-  if (result.faultType && 
-      result.faultType.toLowerCase() !== 'normal' && 
-      result.confidence > 0.8) {
-    setAlert({
-      type: 'fault',
-      title: 'Fault Detected',
-      message: `${result.faultType} detected with ${(result.confidence * 100).toFixed(1)}% confidence`,
-      details: `Reliability: ${(result.reliability * 100).toFixed(1)}%`
-    });
-  } else {
-    // Clear any existing alert when returning to normal
-    setAlert(null);
-  }
-
-  // Log event - only log non-normal faults
-  if (eventLogRef.current && 
-      result.faultType && 
-      result.faultType.toLowerCase() !== 'normal') {
-    eventLogRef.current.addEvent({
-      type: 'fault',
-      message: `${result.faultType} - Confidence: ${(result.confidence * 100).toFixed(1)}%, Reliability: ${(result.reliability * 100).toFixed(1)}%`
-    });
-  }
-}, []);
 
   const handleNewData = useCallback((data) => {
     if (workerRef.current && data.completeWindow) {

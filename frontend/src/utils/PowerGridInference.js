@@ -28,10 +28,10 @@ class PowerGridInference {
     async initialize() {
         try {
             // Load model and config
-            const modelResponse = await fetch('/models/power_grid_model.onnx');
+            const modelResponse = await fetch(process.env.PUBLIC_URL + '/models/power_grid_model.onnx');
             const modelBuffer = await modelResponse.arrayBuffer();
             
-            const configResponse = await fetch('/models/model_config.json');
+            const configResponse = await fetch(process.env.PUBLIC_URL + '/models/model_config.json');
             this.config = await configResponse.json();
 
             // Set class properties from config
