@@ -31,7 +31,6 @@ export const Dashboard = () => {
   
   // Initialize services
   const generator = useMemo(() =>
-    console.log('Initializing WaveformGenerator');
     new WaveformGenerator(metrics.sampleRate), [metrics.sampleRate]
   );
 
