@@ -9,6 +9,7 @@ import { WaveformGenerator } from '../utils/waveformGenerator';
 export const EventLogContext = createContext(null);
 
 export const Dashboard = () => {
+  console.log('Dashboard initializing');
   // State management
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -30,9 +31,10 @@ export const Dashboard = () => {
   const workerRef = useRef(null);
   
   // Initialize services
-  const generator = useMemo(() =>
-    new WaveformGenerator(metrics.sampleRate), [metrics.sampleRate]
-  );
+  const generator = useMemo(() => {
+    console.log('Creating new WaveformGenerator');
+    return new WaveformGenerator(metrics.sampleRate);
+  }, [metrics.sampleRate]);
 
  // Handle inference results
  const handleInferenceResult = useCallback((result) => {
@@ -73,12 +75,14 @@ export const Dashboard = () => {
 
 // Initialize Web Worker
 useEffect(() => {
+  console.log('Initializing Web Worker');
   workerRef.current = new Worker(
-      new URL('../workers/InferenceWorker.js', import.meta.url),
-      { type: 'module' }
+    new URL('../workers/InferenceWorker.js', import.meta.url),
+    { type: 'module' }
   );
   workerRef.current.onmessage = (e) => {
-      const { type, payload } = e.data;
+    const { type, payload } = e.data;
+    console.log('Worker message received:', type);
       
       switch (type) {
           case 'INIT_SUCCESS':
@@ -125,6 +129,10 @@ useEffect(() => {
 
 
   const handleNewData = useCallback((data) => {
+    console.log('New data received:', {
+      hasCompleteWindow: !!data.completeWindow,
+      isTransitioning: data.isTransitioning
+    });
     if (workerRef.current && data.completeWindow) {
         // Only send if we have a complete window and we're not in transition
         if (!data.isTransitioning) {  // We'll add this flag to the data from WaveformGenerator
