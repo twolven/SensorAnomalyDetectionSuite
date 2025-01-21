@@ -5,7 +5,6 @@ import { FaultControls } from './FaultControls';
 import { MetricsPanel } from './MetricsPanel';
 import { AlertBanner } from './AlertBanner';
 import { WaveformGenerator } from '../utils/waveformGenerator';
-import PowerGridInference from '../utils/PowerGridInference';
 
 export const EventLogContext = createContext(null);
 
