@@ -1,0 +1,111 @@
+{
+    "input_shape": [
+        100
+    ],
+    "output_shape": [
+        5
+    ],
+    "layer_details": [
+        {
+            "name": "input_layer",
+            "type": "InputLayer",
+            "units": null,
+            "activation": null,
+            "dropout_rate": null,
+            "trainable_params": 0
+        },
+        {
+            "name": "dense",
+            "type": "Dense",
+            "units": 32,
+            "activation": "relu",
+            "dropout_rate": null,
+            "trainable_params": 3232
+        },
+        {
+            "name": "dropout",
+            "type": "Dropout",
+            "units": null,
+            "activation": null,
+            "dropout_rate": 0.2,
+            "trainable_params": 0
+        },
+        {
+            "name": "dense_1",
+            "type": "Dense",
+            "units": 16,
+            "activation": "relu",
+            "dropout_rate": null,
+            "trainable_params": 528
+        },
+        {
+            "name": "dropout_1",
+            "type": "Dropout",
+            "units": null,
+            "activation": null,
+            "dropout_rate": 0.1,
+            "trainable_params": 0
+        },
+        {
+            "name": "dense_2",
+            "type": "Dense",
+            "units": 5,
+            "activation": "softmax",
+            "dropout_rate": null,
+            "trainable_params": 85
+        }
+    ],
+    "model_name": "power_grid_model",
+    "optimizer_config": {
+        "name": "adam",
+        "learning_rate": 2.0000001313746907e-05,
+        "weight_decay": null,
+        "clipnorm": null,
+        "global_clipnorm": null,
+        "clipvalue": null,
+        "use_ema": false,
+        "ema_momentum": 0.99,
+        "ema_overwrite_frequency": null,
+        "loss_scale_factor": null,
+        "gradient_accumulation_steps": null,
+        "beta_1": 0.9,
+        "beta_2": 0.999,
+        "epsilon": 1e-07,
+        "amsgrad": false
+    },
+    "loss_function": "categorical_crossentropy",
+    "metrics": [
+        "loss",
+        "compile_metrics"
+    ],
+    "preprocessing": {
+        "input_range": [
+            -1,
+            1
+        ],
+        "sampling_rate": 60,
+        "sequence_length": 100,
+        "signal_conditions": [
+            "normal",
+            "sag",
+            "swell",
+            "harmonic",
+            "interruption"
+        ],
+        "pattern_types": [
+            "complete",
+            "start",
+            "middle",
+            "end"
+        ],
+        "noise_level": 0.005,
+        "performance_metrics": {
+            "accuracy": 0.9996,
+            "normal_precision": 1.0,
+            "sag_precision": 1.0,
+            "swell_precision": 1.0,
+            "harmonic_precision": 1.0,
+            "interruption_precision": 1.0
+        }
+    }
+}

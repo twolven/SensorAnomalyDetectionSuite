@@ -1,0 +1,51 @@
+{
+    "performance": {
+        "avg_inference_time": 0.007336981156293084,
+        "max_inference_time": 0.6299018859863281,
+        "min_inference_time": 0.0,
+        "percentile_95": 0.0,
+        "model_size_mb": 0.016470909118652344
+    },
+    "accuracy": {
+        "overall": 0.9991176470588236,
+        "per_pattern": {
+            "complete": {
+                "overall": 0.997,
+                "per_class": {
+                    "Normal": 1.0,
+                    "Sag": 0.995,
+                    "Swell": 0.99,
+                    "Harmonic": 1.0,
+                    "Interruption": 1.0
+                }
+            },
+            "start": {
+                "overall": 1.0,
+                "per_class": {
+                    "Sag": 1.0,
+                    "Swell": 1.0,
+                    "Harmonic": 1.0,
+                    "Interruption": 1.0
+                }
+            },
+            "middle": {
+                "overall": 1.0,
+                "per_class": {
+                    "Sag": 1.0,
+                    "Swell": 1.0,
+                    "Harmonic": 1.0,
+                    "Interruption": 1.0
+                }
+            },
+            "end": {
+                "overall": 1.0,
+                "per_class": {
+                    "Sag": 1.0,
+                    "Swell": 1.0,
+                    "Harmonic": 1.0,
+                    "Interruption": 1.0
+                }
+            }
+        }
+    }
+}

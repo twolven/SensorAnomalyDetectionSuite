@@ -1,0 +1,6 @@
+{
+    "detection_recall": 0.3982712765957447,
+    "detection_precision": 0.019323827343699595,
+    "classification_accuracy": 0.34557595993322204,
+    "false_positive_rate": 20.212101063829788
+}
