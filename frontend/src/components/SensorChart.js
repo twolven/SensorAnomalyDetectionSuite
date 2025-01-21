@@ -7,7 +7,6 @@ const ML_WINDOW_SIZE = 100;  // For ML detection
 const SAMPLE_INTERVAL = Math.floor(1000 / 60);  // 60Hz sampling rate (~16.67ms)
 
 export const SensorChart = ({ generator, onNewData, faultType, confidence }) => {
-    console.log('SensorChart mounting with generator:', !!generator);
     const [data, setData] = useState([]);
     const [isRunning, setIsRunning] = useState(true);
     const [errorMessage, setErrorMessage] = useState(null);
@@ -18,12 +17,10 @@ export const SensorChart = ({ generator, onNewData, faultType, confidence }) => 
     const transitionCountRef = useRef(0); // Track transitions within a window
     
     const updateData = () => {
-        console.log('updateData called, isRunning:', isRunning);
         if (!isRunning) return;
-    
+
         try {
             const { sample } = generator.generateSample();
-            console.log('Sample generated:', sample);
             timeRef.current += 1 / 60; // 60Hz sampling
             
             // Add to visualization data
@@ -75,7 +72,6 @@ export const SensorChart = ({ generator, onNewData, faultType, confidence }) => 
             }
 
             // Schedule next update at exact 60Hz
-            console.log('Scheduling next update with interval:', SAMPLE_INTERVAL);
             timeoutRef.current = setTimeout(updateData, SAMPLE_INTERVAL);
 
         } catch (err) {
@@ -87,13 +83,11 @@ export const SensorChart = ({ generator, onNewData, faultType, confidence }) => 
 
     // Effect for starting/stopping the updates
     useEffect(() => {
-        console.log('Running effect, isRunning:', isRunning);
         if (isRunning) {
             updateData();
         }
-    
+
         return () => {
-            console.log('Cleaning up effect');
             if (timeoutRef.current) {
                 clearTimeout(timeoutRef.current);
             }
@@ -102,13 +96,12 @@ export const SensorChart = ({ generator, onNewData, faultType, confidence }) => 
 
     // Reset when generator changes
     useEffect(() => {
-        console.log('Generator changed, resetting data');
         setData([]);
         timeRef.current = 0;
         mlBufferRef.current = [];
         windowStateRef.current = 'normal';
         transitionCountRef.current = 0;
-    }, [generator, updateData]);
+    }, [generator]);
 
     const toggleRunning = () => {
         setIsRunning(prev => !prev);
