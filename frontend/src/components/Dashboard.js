@@ -34,53 +34,57 @@ export const Dashboard = () => {
     new WaveformGenerator(metrics.sampleRate), [metrics.sampleRate]
   );
 
-  // Initialize Web Worker
-  useEffect(() => {
-    workerRef.current = new Worker(
+// Initialize Web Worker
+useEffect(() => {
+  workerRef.current = new Worker(
       new URL('../workers/InferenceWorker.js', import.meta.url),
       { type: 'module' }
   );
-    workerRef.current.onmessage = (e) => {
+  workerRef.current.onmessage = (e) => {
       const { type, payload } = e.data;
       
       switch (type) {
-        case 'INIT_SUCCESS':
-          setIsLoading(false);
-          setMetrics(prev => ({
-            ...prev,
-            bufferSize: payload.config.inputSize,
-            sampleRate: payload.config.samplingRate
-          }));
-          break;
+          case 'INIT_SUCCESS':
+              setIsLoading(false);
+              setMetrics(prev => ({
+                  ...prev,
+                  bufferSize: payload.config.inputSize,
+                  sampleRate: payload.config.samplingRate
+              }));
+              break;
 
-        case 'INIT_ERROR':
-          setError(payload.message);
-          setIsLoading(false);
-          break;
+          case 'INIT_ERROR':
+              setError(payload.message);
+              setIsLoading(false);
+              break;
 
-        case 'RESULT':
-          handleInferenceResult(payload);
-          break;
+          case 'RESULT':
+              handleInferenceResult(payload);
+              break;
 
-        case 'ERROR':
-          console.error('Inference error:', payload.message);
-          if (eventLogRef.current) {
-            eventLogRef.current.addEvent({
-              type: 'error',
-              message: `Inference error: ${payload.message}`
-            });
-          }
-          break;
+          case 'ERROR':
+              console.error('Inference error:', payload.message);
+              if (eventLogRef.current) {
+                  eventLogRef.current.addEvent({
+                      type: 'error',
+                      message: `Inference error: ${payload.message}`
+                  });
+              }
+              break;
+
+          default:
+              console.warn('Unhandled message type:', type);
+              break;
       }
-    };
+  };
 
-    // Initialize the inference engine
-    workerRef.current.postMessage({ type: 'INIT' });
+  // Initialize the inference engine
+  workerRef.current.postMessage({ type: 'INIT' });
 
-    return () => {
+  return () => {
       workerRef.current?.terminate();
-    };
-  }, []);
+  };
+}, [handleInferenceResult]);
 
   // Handle inference results
 const handleInferenceResult = useCallback((result) => {

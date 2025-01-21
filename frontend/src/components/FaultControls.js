@@ -25,8 +25,6 @@ const FAULT_TYPES = [
 ];
 
 export const FaultControls = ({ onInjectFault }) => {
-  const eventLog = useContext(EventLogContext);
-
   const handleFaultClick = (faultType) => {
     onInjectFault({ 
         type: faultType,

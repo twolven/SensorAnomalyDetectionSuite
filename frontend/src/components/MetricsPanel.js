@@ -22,7 +22,7 @@ export const MetricsPanel = ({ metrics }) => {
     return highest;
   };
 
-  const { status, confidence } = getHighestConfidenceStatus();
+  const { status } = getHighestConfidenceStatus();
   const isFault = status.toLowerCase() !== 'normal';
 
   const MetricCard = ({ label, value, unit, highlight = false, fullWidth = false, error = false }) => (

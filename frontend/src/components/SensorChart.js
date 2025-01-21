@@ -101,7 +101,7 @@ export const SensorChart = ({ generator, onNewData, faultType, confidence }) => 
         mlBufferRef.current = [];
         windowStateRef.current = 'normal';
         transitionCountRef.current = 0;
-    }, [generator]);
+    }, [generator,updateData]);
 
     const toggleRunning = () => {
         setIsRunning(prev => !prev);

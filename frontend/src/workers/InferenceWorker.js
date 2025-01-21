@@ -3,8 +3,8 @@ import PowerGridInference from '../utils/PowerGridInference';
 
 const ctx = self;
 let inferenceEngine = null;
+// Buffer for collecting samples before processing
 let sampleBuffer = [];
-const WINDOW_SIZE = 100;
 
 ctx.addEventListener('message', async function(e) {
     const { type, payload } = e.data;
