@@ -2,7 +2,7 @@
   "name": "sensor-anomaly-detection",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://twolven.github.io/SADS",
+  "homepage": "https://twolven.github.io/SensorAnomalyDetectionSuite",
   "dependencies": {
     "@tensorflow/tfjs": "^4.22.0",
     "@testing-library/jest-dom": "^5.17.0",
