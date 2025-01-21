@@ -203,9 +203,14 @@ return (
             Real-time sensor data analysis using machine learning to detect anomalies. Click the fault buttons to simulate various types of signal disturbances.
           </div>
           
-          <h1 className="text-3xl font-bold text-white">
-            Sensor Anomaly Detection Suite
-          </h1>
+          <div className="text-center">
+            <h1 className="text-3xl font-bold text-white mb-2">
+              Sensor Anomaly Detection Suite
+            </h1>
+            <p className="text-amber-400 text-sm">
+              ⚠️ For optimal experience, please use a desktop device. Mobile rendering is not supported.
+            </p>
+          </div>
           
           <div className="w-1/4 text-gray-300 text-right">
             Press F12 and look at the console to see what the ML Model sees!
