@@ -1,4 +1,8 @@
 # Sensor Anomaly Detection Suite (SADS)
+
+> [!WARNING]
+> **Deployment Notice:** The application is currently experiencing environment-specific behavior differences between local development (`npm start`) and GitHub Pages deployment. Local functionality is working as expected, while the GitHub Pages deployment is showing limited functionality. Active debugging is in progress. (Last updated: January 21, 2024 @ 7:21 AM PST)
+
 ## A Power Grid Fault Detection & Monitoring System
 
 https://twolven.github.io/SensorAnomalyDetectionSuite
