@@ -210,6 +210,9 @@ return (
             <p className="text-amber-400 text-sm">
               ⚠️ For optimal experience, please use a desktop device. Mobile rendering is not supported.
             </p>
+            <p className="text-red-400 text-sm">
+              ⚠️ Injecting faults while system confidence is not "normal" will result in incorrect ML detections.
+            </p>
           </div>
           
           <div className="w-1/4 text-gray-300 text-right">
