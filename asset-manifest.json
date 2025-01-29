@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/SensorAnomalyDetectionSuite/static/css/main.b946b6a9.css",
+    "main.js": "/SensorAnomalyDetectionSuite/static/js/main.8f2ae127.js",
+    "static/js/94.be0f42e7.chunk.js": "/SensorAnomalyDetectionSuite/static/js/94.be0f42e7.chunk.js",
+    "static/js/284.ab886646.chunk.js": "/SensorAnomalyDetectionSuite/static/js/284.ab886646.chunk.js",
+    "static/media/ort-wasm-simd-threaded.wasm": "/SensorAnomalyDetectionSuite/static/media/ort-wasm-simd-threaded.50be9f91026bda8b3ca4.wasm",
+    "index.html": "/SensorAnomalyDetectionSuite/index.html",
+    "main.b946b6a9.css.map": "/SensorAnomalyDetectionSuite/static/css/main.b946b6a9.css.map",
+    "main.8f2ae127.js.map": "/SensorAnomalyDetectionSuite/static/js/main.8f2ae127.js.map",
+    "94.be0f42e7.chunk.js.map": "/SensorAnomalyDetectionSuite/static/js/94.be0f42e7.chunk.js.map",
+    "284.ab886646.chunk.js.map": "/SensorAnomalyDetectionSuite/static/js/284.ab886646.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b946b6a9.css",
+    "static/js/main.8f2ae127.js"
+  ]
+}
