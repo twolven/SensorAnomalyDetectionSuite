@@ -99,7 +99,7 @@ export class WaveformGenerator {
               this.faultSamplesRemaining = Math.floor(this.windowSize * 0.7); 
               break;
           case 'interruption':
-              this.faultSamplesRemaining = Math.floor(this.windowSize * 0.7); 
+              this.faultSamplesRemaining = Math.floor(this.windowSize * 0.85); 
               break;
           case 'swell':
               this.faultSamplesRemaining = Math.floor(this.windowSize * 0.8);  
